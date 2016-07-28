@@ -1,0 +1,6 @@
+include *.txt
+include README.md
+include LICENSE
+include uri/uri.regex
+
+global-exclude *.pyc
