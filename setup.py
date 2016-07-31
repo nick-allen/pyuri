@@ -14,7 +14,7 @@ with open('README.md') as f:
 test_requirements = parse_requirements('test-requirements.txt')
 
 setup(
-	name='uri',
+	name='python-uri',
 	version='0.1.0',
 	packages=find_packages(exclude=('tests.*', 'tests',)),
 	url='https://github.com/nick-allen/python-uri',
