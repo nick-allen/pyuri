@@ -1,9 +1,14 @@
-# python-uri
-Better URI handling
+# Python URI
 
 [![Build Status](https://travis-ci.org/nick-allen/python-uri.svg?branch=master)](https://travis-ci.org/nick-allen/python-uri)
 [![Coverage Status](https://coveralls.io/repos/github/nick-allen/python-uri/badge.svg?branch=master)](https://coveralls.io/github/nick-allen/python-uri?branch=master)
 [![PyPI version](https://badge.fury.io/py/python-uri.svg)](https://badge.fury.io/py/python-uri)
+
+Better URI handling
+
+Tested with Python 2.7 and 3.5
+
+---
 
 ## Install
 
