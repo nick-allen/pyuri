@@ -14,7 +14,16 @@ class URI(object):
 
 	__modified = False
 	__uri = None
-	__validators = {}
+	__validators = {
+		'scheme': [StringValidator()],
+		'username': [StringValidator()],
+		'password': [StringValidator()],
+		'host': [StringValidator(False)],
+		'port': [PortValidator()],
+		'path': [StringValidator()],
+		'query': [StringValidator()],
+		'fragment': [StringValidator()]
+	}
 
 	def __init__(
 		self,
@@ -26,23 +35,16 @@ class URI(object):
 		port=None,
 		path=None,
 		query=None,
-		fragment=None,
-		strict=False
+		fragment=None
 	):
-		if uri and any([locals()[key] is not None for key in self.__validators]):
-			raise ValueError('Cannot provide uri argument alongside any individual parameters')
+		args = locals()
+		args.pop('self')
 
-		self._strict = strict
-		self.__validators = {
-			'scheme': [StringValidator(self._strict)],
-			'username': [StringValidator()],
-			'password': [StringValidator()],
-			'host': [StringValidator(self._strict)],
-			'port': [PortValidator()],
-			'path': [StringValidator()],
-			'query': [StringValidator()],
-			'fragment': [StringValidator()]
-		}
+		if all([args[key] is None for key in args]):
+			raise ValueError('Must provide either uri argument, or individual arguments to build URI (at minimum host)')
+
+		if uri is not None and any([args[key] is not None for key in self.__validators]):
+			raise ValueError('Cannot provide uri argument alongside any individual parameters')
 
 		if uri is None:
 			self.scheme = scheme
@@ -59,6 +61,12 @@ class URI(object):
 
 	def __str__(self):
 		return self.uri
+
+	def __repr__(self):
+		return '{0.__class__.__name__}("{0.uri}")'.format(self)
+
+	def __eq__(self, other):
+		return isinstance(other, self.__class__) and other.uri == self.uri
 
 	def __setattr__(self, key, value):
 		if key in self.__validators:
@@ -90,7 +98,7 @@ class URI(object):
 
 		match = URI_REGEX.match(value)
 		if match is None:
-			raise ValueError('Unable to parse URI from `{}`'.format(value))
+			raise ValueError('Unable to match URI from `{}`'.format(value))
 
 		for key, value in match.groupdict().items():
 			setattr(self, key, value)
@@ -106,7 +114,9 @@ class URI(object):
 		password = self.password or ''
 
 		if credentials and password:
-			credentials = '{}:{}'.format(credentials, password)
+			credentials = self.username + ':' + self.password
+		if credentials:
+			credentials += '@'
 
 		if self.port:
 			location = '{}:{}'.format(self.host, self.port)
@@ -114,7 +124,15 @@ class URI(object):
 			location = self.host
 
 		path = self.path or ''
-		query = self.query or ''
-		fragment = self.fragment or ''
+
+		if self.query:
+			query = '?' + self.query
+		else:
+			query = ''
+
+		if self.fragment:
+			fragment = '#' + self.fragment
+		else:
+			fragment = ''
 
 		return scheme + credentials + location + path + query + fragment

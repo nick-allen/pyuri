@@ -1,4 +1,8 @@
-"""Python URI Parsinng"""
+"""Python URI Handling"""
 
 
-__version__ = '0.1.0'
+from .uri import URI
+
+__all__ = [
+	'URI'
+]
