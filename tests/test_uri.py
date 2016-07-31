@@ -16,9 +16,21 @@ def test_uri_only_argument():
 def test_uri_construction_from_components():
 	"""Tests that URIs can be initialized by passing each piece individually"""
 
-	uri = URI(scheme='http', username='user', password='pass', host='localhost', port=8000)
+	uri = URI(host='localhost')
 
-	assert_equal(str(uri), 'http://user:pass@localhost:8000')
+	assert_equal(str(uri), 'localhost')
+
+	uri = URI(
+		scheme='http',
+		username='user',
+		password='pass',
+		host='localhost',
+		port=8000,
+		query='query=value',
+		fragment='/fragment/path'
+	)
+
+	assert_equal(str(uri), 'http://user:pass@localhost:8000?query=value#/fragment/path')
 
 
 def test_uri_invalid_initialization():
