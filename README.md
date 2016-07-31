@@ -12,7 +12,7 @@ Better URI handling
 
 Raw URI string parsing:
 
-```
+```python
 from uri import URI
 
 uri = URI('http://localhost:80/path/to/file?query=value#/fragment/path')
@@ -27,7 +27,7 @@ uri.fragment == '/fragment/path'
 
 Composition by parts
 
-```
+```python
 from uri import URI
 
 uri = URI(scheme='ftp', host='localhost', port=8000, query='key=value')
@@ -37,7 +37,7 @@ str(uri) == 'ftp://localhost:8000?key=value'
 
 Modification and comparision
 
-```
+```python
 from uri import URI
 
 uri1 = URI('https://example.com:80')
