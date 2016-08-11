@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from setuptools import setup, find_packages
+from setuptools.depends import get_module_constant
 
 
 def parse_requirements(requirements):
@@ -15,7 +16,7 @@ test_requirements = parse_requirements('test-requirements.txt')
 
 setup(
 	name='python-uri',
-	version='0.1.0',
+	version=get_module_constant('uri', '__version__'),
 	packages=find_packages(exclude=('tests.*', 'tests',)),
 	url='https://github.com/nick-allen/python-uri',
 	license='MIT',
