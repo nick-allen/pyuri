@@ -1,5 +1,9 @@
 import os
 import re
+try:
+	from urlparse import parse_qs
+except ImportError:
+	from urllib.parse import parse_qs
 
 from .validators import *
 
@@ -136,3 +140,7 @@ class URI(object):
 			fragment = ''
 
 		return scheme + credentials + location + path + query + fragment
+
+	def query_dict(self):
+		"""Return dictionary of query parameters and their respective values"""
+		return parse_qs(self.query)

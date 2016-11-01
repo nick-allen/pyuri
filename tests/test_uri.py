@@ -119,3 +119,13 @@ def test_uri_string_validation():
 
 	with assert_raises(ValueError):
 		URI(host=1234)
+
+
+def test_uri_query_dict():
+	"""Test output of query_dict() method matches output of parse_qs() builtin function"""
+	uri = URI('http://localhost:80/path/to/file?repeat=value1&repeat=value2&escape=escaped%20value#/fragment/path')
+
+	assert_equal(uri.query_dict(), {
+		'repeat': ['value1', 'value2'],
+		'escape': ['escaped value']
+	})
