@@ -1,4 +1,7 @@
-import six
+try:
+    basestring
+except NameError:
+    basestring = str
 
 
 class ExitValidation(Exception):
@@ -22,7 +25,7 @@ class StringValidator(_Validator):
     def __call__(self, value):
         super(StringValidator, self).__call__(value)
 
-        if isinstance(value, six.string_types):
+        if isinstance(value, basestring):
             return value
         else:
             raise TypeError('Expected string type, got {}'.format(type(value)))
