@@ -1,18 +1,18 @@
-# Python URI
+# PyURI
 
-[![Build Status](https://travis-ci.org/nick-allen/python-uri.svg?branch=master)](https://travis-ci.org/nick-allen/python-uri)
-[![Coverage Status](https://coveralls.io/repos/github/nick-allen/python-uri/badge.svg?branch=master)](https://coveralls.io/github/nick-allen/python-uri?branch=master)
-[![PyPI version](https://badge.fury.io/py/python-uri.svg)](https://badge.fury.io/py/python-uri)
+[![Build Status](https://travis-ci.org/nick-allen/pyuri.svg?branch=master)](https://travis-ci.org/nick-allen/pyuri)
+[![Coverage Status](https://coveralls.io/repos/github/nick-allen/pyuri/badge.svg?branch=master)](https://coveralls.io/github/nick-allen/pyuri?branch=master)
+[![PyPI version](https://badge.fury.io/py/pyuri.svg)](https://badge.fury.io/py/pyuri)
 
 Better URI handling
 
-Tested with Python 2.7 and 3.5
+Tested with Python 2.7 and 3.6
 
 ---
 
 ## Install
 
-`pip install python-uri`
+`pip install pyuri`
 
 ## Usage
 
