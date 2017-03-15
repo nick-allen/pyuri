@@ -19,7 +19,7 @@ Tested with Python 2.7 and 3.6
 Raw URI string parsing:
 
 ```python
-from uri import URI
+from pyuri import URI
 
 uri = URI('http://localhost:80/path/to/file?query=value#/fragment/path')
 
@@ -34,7 +34,7 @@ assert uri.fragment == '/fragment/path'
 Composition by parts
 
 ```python
-from uri import URI
+from pyuri import URI
 
 uri = URI(scheme='ftp', host='localhost', port=8000, query='key=value')
 
@@ -44,7 +44,7 @@ assert str(uri) == 'ftp://localhost:8000?key=value'
 Modification and comparison
 
 ```python
-from uri import URI
+from pyuri import URI
 
 uri1 = URI('https://example.com:80')
 uri2 = URI('https://example.com:443/new/path')
@@ -62,7 +62,7 @@ assert uri1 == uri2
 Additional helpers
 
 ```python
-from uri import URI
+from pyuri import URI
 
 uri = URI('http://localhost:80/path/to/file?repeat=value1&repeat=value2&escape=escaped%20value#/fragment/path')
 
